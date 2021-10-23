@@ -4,66 +4,92 @@ xc = @(t) 1*sin(20*pi*60*t) + ... % Sinal inicial (já amostrado)
           3*sin(2*pi*240*t) + ...
           4*sin(2*pi*120*t) + ...
           sin(2*pi*180*t);
-
+%%      
+n32 = 0:1:31;      
+n64 = 0:1:63;
+n128 = 0:1:127;
+n256 = 0:1:255;
+n512 = 0:1:511;
+n1024= 0:1:1023;
 %% Alternativa (a)
 % Calcule a DFT e FFTs de x[n] usando 32 amostras do sinal
 signal = xc(t(0:1:31));
-dft_a = my_dft(signal, 32);
-fft_time_a = my_fft_time(signal, 32);
-fft_freq_a = my_fft_freq(signal, 32);
+dft_a = my_dft(signal, 32)/16;
+fft_time_a = my_fft_time(signal, 32)/16;
+fft_freq_a = my_fft_freq(signal, 32)/16;
+%figure(1)
+%stem(n32 - 16, dft_a);
 
 %% Alternativa (b)
 % Aumente o comprimento para 64 amostras, acrescentando 32 zeros às amostras de x[n], 
 % do item anterior, e calcule a DFT e FFTs do novo x[n]
 signal = xc(t(0:1:31));
-dft_b = my_dft(signal, 64);
-fft_time_b = my_fft_time(signal, 64);
-fft_freq_b = my_fft_freq(signal, 64);
+dft_b = my_dft(signal, 64)/32;
+fft_time_b = my_fft_time(signal, 64)/32;
+fft_freq_b = my_fft_freq(signal, 64)/32;
+%figure(2)
+%stem(n64 - 32, dft_b);
 
 %% Alternativa (c)
 % Repita o processo dos itens (a) e (b), para o sinal x[n] com 64, 128, 256 e 512 amostras
 %- Repetindo a alternativa (a)
 signal = xc(t(0:1:63));
-dft_c_a_64 = my_dft(signal, 64);
-fft_time_c_a_64 = my_fft_time(signal, 64);
-fft_freq_c_a_64 = my_fft_freq(signal, 64);
+dft_c_a_64 = my_dft(signal, 64)/32;
+fft_time_c_a_64 = my_fft_time(signal, 64)/32;
+fft_freq_c_a_64 = my_fft_freq(signal, 64)/32;
+%figure(3)
+%stem(n64 - 32, dft_c_a_64);
 
 signal = xc(t(0:1:127));
-dft_c_a_128 = my_dft(signal, 128);
-fft_time_c_a_128 = my_fft_time(signal, 128);
-fft_freq_c_a_128 = my_fft_freq(signal, 128);
+dft_c_a_128 = my_dft(signal, 128)/64;
+fft_time_c_a_128 = my_fft_time(signal, 128)/64;
+fft_freq_c_a_128 = my_fft_freq(signal, 128)/64;
+%figure(4)
+%stem(n128 - 64, dft_c_a_128);
 
 signal = xc(t(0:1:255));
-dft_c_a_256 = my_dft(signal, 256);
-fft_time_c_a_256 = my_fft_time(signal, 256);
-fft_freq_c_a_256 = my_fft_freq(signal, 256);
+dft_c_a_256 = my_dft(signal, 256)/128;
+fft_time_c_a_256 = my_fft_time(signal, 256)/128;
+fft_freq_c_a_256 = my_fft_freq(signal, 256)/128;
+%figure(5)
+%stem(n256 - 128, dft_c_a_256);
 
 signal = xc(t(0:1:511));
-dft_c_a_512 = my_dft(signal, 512);
-fft_time_c_a_512 = my_fft_time(signal, 512);
-fft_freq_c_a_512 = my_fft_freq(signal, 512);
+dft_c_a_512 = my_dft(signal, 512)/256;
+fft_time_c_a_512 = my_fft_time(signal, 512)/256;
+fft_freq_c_a_512 = my_fft_freq(signal, 512)/256;
+%figure(6)
+%stem(n512 - 256, dft_c_a_512);
 
 %- Repetindo a alternativa (b)
 signal = xc(t(0:1:63));
-dft_c_b_128 = my_dft(signal, 128);
-fft_time_c_b_128 = my_fft_time(signal, 128);
-fft_freq_c_b_128 = my_fft_freq(signal, 128);
+dft_c_b_128 = my_dft(signal, 128)/64;
+fft_time_c_b_128 = my_fft_time(signal, 128)/64;
+fft_freq_c_b_128 = my_fft_freq(signal, 128)/64;
+%figure(7)
+%stem(n128 - 64, dft_c_b_128);
 
 signal = xc(t(0:1:127));
-dft_c_b_256 = my_dft(signal, 256);
-fft_time_c_b_256 = my_fft_time(signal, 256);
-fft_freq_c_b_256 = my_fft_freq(signal, 256);
+dft_c_b_256 = my_dft(signal, 256)/128;
+fft_time_c_b_256 = my_fft_time(signal, 256)/128;
+fft_freq_c_b_256 = my_fft_freq(signal, 256)/128;
+%figure(8)
+%stem(n256 - 128, dft_c_b_256);
 
 signal = xc(t(0:1:255));
-dft_c_b_512 = my_dft(signal, 512);
-fft_time_c_b_512 = my_fft_time(signal, 512);
-fft_freq_c_b_512 = my_fft_freq(signal, 512);
+dft_c_b_512 = my_dft(signal, 512)/256;
+fft_time_c_b_512 = my_fft_time(signal, 512)/256;
+fft_freq_c_b_512 = my_fft_freq(signal, 512)/256;
+%figure(9)
+%stem(n512 - 256, dft_c_b_512);
 
 signal = xc(t(0:1:511));
-dft_c_b_1024 = my_dft(signal, 1024);
-fft_time_c_b_1024 = my_fft_time(signal, 1024);
-fft_freq_c_b_1024 = my_fft_freq(signal, 1024);
-fft_c_a_matlab_1024 = fft(signal, 1024);
+dft_c_b_1024 = my_dft(signal, 1024)/512;
+fft_time_c_b_1024 = my_fft_time(signal, 1024)/512;
+fft_freq_c_b_1024 = my_fft_freq(signal, 1024)/512;
+fft_c_a_matlab_1024 = fft(signal, 1024)/512;
+figure(10)
+stem(n1024 - 512, dft_c_b_1024);
 
 %% Alternativa (d)
 % Comente os resultados, mostrando numa tabela comparativa a quantidade de operações 
@@ -84,7 +110,7 @@ idft_a = my_idft(dft_a, 32);
 signal = xc(t(0:1:31));
 idft_b = my_idft(dft_b, 64);
 
-plotIDFT(idft_b, signal, 64);
+%plotIDFT(idft_b, signal, 64);
 
 signal = xc(t(0:1:63));
 idft_c_a_64 = my_idft(dft_c_a_64, 64);
