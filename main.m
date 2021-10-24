@@ -4,7 +4,7 @@ xc = @(t) 1*sin(20*pi*60*t) + ... % Sinal inicial (já amostrado)
           3*sin(2*pi*240*t) + ...
           4*sin(2*pi*120*t) + ...
           sin(2*pi*180*t);
-%%      
+%% Definição dos vetores de n para cada uma das quantidades de amostras utilizadas      
 n32 = 0:1:31;      
 n64 = 0:1:63;
 n128 = 0:1:127;
@@ -13,17 +13,17 @@ n512 = 0:1:511;
 n1024= 0:1:1023;
 %% Alternativa (a)
 % Calcule a DFT e FFTs de x[n] usando 32 amostras do sinal
-signal = xc(t(0:1:31));
-dft_a = my_dft(signal, 32)/16;
-fft_time_a = my_fft_time(signal, 32)/16;
-fft_freq_a = my_fft_freq(signal, 32)/16;
-%figure(1)
-%stem(n32 - 16, dft_a);
+signal = xc(t(n32));
+dft_a = my_dft(signal, 32);
+fft_time_a = my_fft_time(signal, 32);
+fft_freq_a = my_fft_freq(signal, 32);
+% figure(1)
+% stem(n32 - 16, fftshift(abs(dft_a/16)));
 
 %% Alternativa (b)
 % Aumente o comprimento para 64 amostras, acrescentando 32 zeros às amostras de x[n], 
 % do item anterior, e calcule a DFT e FFTs do novo x[n]
-signal = xc(t(0:1:31));
+signal = xc(t(n32));
 dft_b = my_dft(signal, 64)/32;
 fft_time_b = my_fft_time(signal, 64)/32;
 fft_freq_b = my_fft_freq(signal, 64)/32;
@@ -88,8 +88,8 @@ dft_c_b_1024 = my_dft(signal, 1024)/512;
 fft_time_c_b_1024 = my_fft_time(signal, 1024)/512;
 fft_freq_c_b_1024 = my_fft_freq(signal, 1024)/512;
 fft_c_a_matlab_1024 = fft(signal, 1024)/512;
-figure(10)
-stem(n1024 - 512, dft_c_b_1024);
+%figure(10)
+%stem(n1024 - 512, dft_c_b_1024);
 
 %% Alternativa (d)
 % Comente os resultados, mostrando numa tabela comparativa a quantidade de operações 
@@ -104,8 +104,12 @@ table(N, SomasDft, SomasFft, ProdutosDft, ProdutosFft)
 %% Alternativa (e)
 % Calcule a iDFTs para todos os DFTs realizados e apresente os sinais
 % reconstruídos x(t) e compare com o sinal x(t)
-signal = xc(t(0:1:31));
+figure(1);
+signal = xc(0:0.002:0.002*31);
+plot(0:0.002:0.002*31, signal);
 idft_a = my_idft(dft_a, 32);
+figure(2);
+plot(n32, idft_a);
 
 signal = xc(t(0:1:31));
 idft_b = my_idft(dft_b, 64);
